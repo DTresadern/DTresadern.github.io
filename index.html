@@ -1,15 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>Dean Tresadern</title>
+
+    <link href="./main.css" rel="stylesheet">
 </head>
-<body>
-  <p>it is a page!</p>
+<body data-theme="dark">
+    <canvas id="gradient-canvas"></canvas>
+    
+    <div id="container">
+        <span id="name">
+            <span>D</span><span>e</span><span>a</span><span>n</span> <span>T</span><span>r</span><span>e</span><span>s</span><span>a</span><span>d</span><span>e</span><span>r</span><span>n</span>
+        </span>
+        <div>
+            <a id="resume" href="/dean-tresadern-resume.pdf" target="_blank">resume</a>
+        </div>
+    </div>
 
-  <p>stuff:</p>
-
-  <a href="./stuff/spacegame.html">spacegame - 45 minute challenge (incomplete state)</a>
+    <script>
+        // Letter flicker functionality
+        function flickerRandomLetter() {
+            const letters = document.querySelectorAll('#name span');
+            const randomLetter = letters[Math.floor(Math.random() * letters.length)];
+            const flickerCount = Math.floor(Math.random() * 3) + 1; // 1-3
+            
+            randomLetter.style.animation = `letterFlicker${flickerCount} 0.4s ease-in-out`;
+            
+            setTimeout(() => {
+                randomLetter.style.animation = '';
+            }, 400);
+            
+            // Schedule next flicker
+            const nextDelay = (Math.random() * 4000) + 1000; // 1-5 seconds
+            setTimeout(flickerRandomLetter, nextDelay);
+        }
+        
+        // Start the flicker cycle after initial page load animation
+        setTimeout(flickerRandomLetter, 1000 + Math.random()*4000);
+    </script>
 </body>
 </html>
